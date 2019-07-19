@@ -2,9 +2,11 @@ package com.maulika.beans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class StudentRegistrationService {
+	private static AtomicInteger studentRegistrationNumber = new AtomicInteger(0);
 	private List<Student> studentRecords;
 	private static StudentRegistrationService instance;
 
@@ -19,6 +21,7 @@ public class StudentRegistrationService {
 		return instance;
 	}
 	public void add(Student std) {
+		std.setRegistrationNumber(studentRegistrationNumber.incrementAndGet() + "");
 		studentRecords.add(std);
 	}
 
